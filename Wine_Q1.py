@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, R
 from sklearn.model_selection import cross_val_score, train_test_split
 from sklearn.utils import shuffle
 from sklearn.metrics import mean_squared_error, classification_report, confusion_matrix
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.preprocessing import LabelEncoder
 from sklearn.pipeline import make_pipeline
 from sklearn.decomposition import PCA
@@ -123,13 +123,24 @@ for method in methods_data.keys():
 cross_val_score(RandomForestClassifier(class_weight='balanced'), X_train, y_train, cv=5, scoring='f1').mean()
 
 # Import our required models
-lr = LinearRegression()
+lr = LogisticRegression()
 rf = RandomForestClassifier()
-
 # Train our model and Predict values
+
+#LogisticRegression
+lr.fit(X_train_u, y_train_u)
+pred_vals = lr.predict(X_Test)
+#print(pred_vals)
+print(classification_report(Y_Test, pred_vals))
+#We achieved 81% accuracy
+
+#RandomForestClassifier
 rf.fit(X_train_u, y_train_u)
 pred_vals = rf.predict(X_Test)
 #print(pred_vals)
-
 print(classification_report(Y_Test, pred_vals))
+
 # Kudos! we now achieved 91% accuracy
+
+#  We achieved 91% accuracy with RFClassifier , hence it is the best of the two models
+
