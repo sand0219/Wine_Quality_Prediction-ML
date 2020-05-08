@@ -112,7 +112,7 @@ methods_data = {"Original": (X_train, y_train),
                 "SMOTE": (x_train_sm, y_train_sm),
                 "Downsampled": (X_train_d, y_train_d)}
 
-# Loop through each type of training sets and apply 5-Fold CV using Logistic Regression
+# Loop through each type of training sets and apply 5-Fold CV using RandomForest Classifier
 # By default in cross_val_score StratifiedCV is used
 for method in methods_data.keys():
     rf_results = cross_val_score(RandomForestClassifier(), methods_data[method][0], methods_data[method][1], cv=5,
